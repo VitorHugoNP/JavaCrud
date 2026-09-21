@@ -9,7 +9,7 @@ import java.util.List;
 import java.util.Optional;
 
 @RestController
-@RequestMapping("/aluno")
+@RequestMapping("/user")
 public class UserController {
     private final UserService userservice;
 
@@ -17,7 +17,7 @@ public class UserController {
         this.userservice = userservice;
     }
 
-    @GetMapping("/listaralunos")
+    @GetMapping("/listarusers")
     public ResponseEntity<List<UserEntity>> list(){
         List<UserEntity> usuario = userservice.findAll();
         return ResponseEntity.ok(usuario);
