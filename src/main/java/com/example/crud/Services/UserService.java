@@ -6,6 +6,7 @@ import org.springframework.stereotype.Service;
 
 import java.util.List;
 import java.util.Optional;
+import java.util.UUID;
 
 @Service
 public class UserService {
@@ -23,11 +24,15 @@ public class UserService {
         return userRepository.findAll();
     }
 
-    public Optional<UserEntity> findById(Long id){
+    public List<UserEntity> findAllOrderByPassword(){
+        return userRepository.FindAllOrderByPassword();
+    }
+
+    public Optional<UserEntity> findById(UUID id){
         return userRepository.findById(id);
     }
 
-    public void deleteByID(Long id){
+    public void deleteByID(UUID id){
         userRepository.deleteById(id);
     }
 

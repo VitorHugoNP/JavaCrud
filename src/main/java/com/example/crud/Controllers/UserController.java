@@ -7,6 +7,7 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 import java.util.Optional;
+import java.util.UUID;
 
 @RestController
 @RequestMapping("/user")
@@ -23,8 +24,14 @@ public class UserController {
         return ResponseEntity.ok(usuario);
     }
 
+    @GetMapping("/ordernados/senhas")
+    public ResponseEntity<List<UserEntity>> BuscarOrdenadosPorSenha(@RequestParam String senha){
+        List<UserEntity> usuario = userservice.findAllOrderByPassword();
+        return ResponseEntity.ok(usuario);
+    }
+
     @GetMapping("/{id}")
-    public ResponseEntity<?> buscarPorID(@PathVariable Long id){
+    public ResponseEntity<?> buscarPorID(@PathVariable UUID id){
         Optional<UserEntity> usuario = userservice.findById(id);
         if(usuario.isEmpty()){
             return ResponseEntity.notFound().build();
@@ -40,8 +47,10 @@ public class UserController {
     }
 
     @DeleteMapping("/{id}")
-    public ResponseEntity<Void> deletar(@PathVariable Long id){
+    public ResponseEntity<Void> deletar(@PathVariable UUID id){
         userservice.deleteByID(id);
         return ResponseEntity.noContent().build();
     }
+
+
 }
