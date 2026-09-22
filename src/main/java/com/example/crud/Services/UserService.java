@@ -1,7 +1,8 @@
 package com.example.crud.Services;
 
-import com.example.crud.DTO.UserResponseDTO;
-import com.example.crud.Entities.UserEntity;
+import com.example.crud.Model.DTO.UserResponseDTO;
+import com.example.crud.Model.Entities.UserEntity;
+import com.example.crud.Model.Form.UserRequestForm;
 import com.example.crud.Repositories.UserRepository;
 import org.springframework.stereotype.Service;
 
@@ -21,8 +22,12 @@ public class UserService {
         this.userRepository = userRepository;
     }
 
-    public UserResponseDTO save(UserEntity user){
-        return toDTO(userRepository.save(user));
+    public UserResponseDTO save(UserRequestForm form){
+        UserEntity userEntity = new UserEntity();
+        userEntity.setName(form.name());
+        userEntity.setEmail(form.email());
+        userEntity.setPassword(form.password());
+        return toDTO(userRepository.save(userEntity));
     }
 
     public List<UserResponseDTO> findAll(){

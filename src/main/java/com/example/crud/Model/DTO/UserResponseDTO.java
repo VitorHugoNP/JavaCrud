@@ -1,4 +1,4 @@
-package com.example.crud.DTO;
+package com.example.crud.Model.DTO;
 
 import java.util.UUID;
 

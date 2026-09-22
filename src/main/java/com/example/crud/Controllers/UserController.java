@@ -1,8 +1,8 @@
 package com.example.crud.Controllers;
 
-import com.example.crud.DTO.UserResponseDTO;
-import com.example.crud.Entities.UserEntity;
-import com.example.crud.Repositories.UserRepository;
+import com.example.crud.Model.DTO.UserResponseDTO;
+import com.example.crud.Model.Entities.UserEntity;
+import com.example.crud.Model.Form.UserRequestForm;
 import com.example.crud.Services.UserService;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -39,7 +39,7 @@ public class UserController {
     }
 
     @PostMapping("/criar")
-    public ResponseEntity<UserResponseDTO> create(@RequestBody UserEntity user){
+    public ResponseEntity<UserResponseDTO> create(@RequestBody UserRequestForm user){
         UserResponseDTO usuario = userservice.save(user);
         return ResponseEntity.ok(usuario);
     }
